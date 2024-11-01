@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "908525025740",
+    "project_id": "ladago-5cee2",
+    "storage_bucket": "ladago-5cee2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:908525025740:android:32a1ba2cbb131bb2900569",
+        "android_client_info": {
+          "package_name": "com.napeno.ladago"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtrc3thoBinHMqFLDUXBt5bM_padqBoS4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

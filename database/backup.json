@@ -1,0 +1,102 @@
+{
+    "__collections__": {
+        "hotel": {
+            "I2xifyCEJmV034lLfcpj": {
+                "address": "28 Đường Thi Sách, The Sóng, Thắng Tam, Vũng Tàu, Việt Nam",
+                "access": {
+                    "check24H": false,
+                    "frontDesk": false,
+                    "carPark": true,
+                    "checkPrivate": true,
+                    "keyAccess": true
+                },
+                "checkOutTime": "11:30",
+                "checkInTime": "14:00 - 15:00",
+                "name": "The Sóng Apartment",
+                "rating": "8,8",
+                "description": "Hãy để chuyến đi của quý khách có một khởi đầu tuyệt vời khi ở lại khách sạn này, nơi có Wi-Fi miễn phí trong tất cả các phòng. Nằm ở vị trí trung tâm tại Thắng Tam của Vũng Tàu, chỗ nghỉ này đặt quý khách ở gần các điểm thu hút và tùy chọn ăn uống thú vị. Hãy nhớ dành một chút thời gian để thăm thú Hải đăng Vũng Tàu cũng như Bãi trước gần đó. Được xếp hạng 5 sao, chỗ nghỉ chất lượng cao này cho phép khách nghỉ sử dụng phòng tập và nhà hàng ngay trong khuôn viên.",
+                "geoCode": "",
+                "idOwner": "haha",
+                "imgHotel": [
+                    "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2F3218212bec21ef67f076d3940f32c5ab.webp?alt=media&token=5287a550-6787-47ed-9d42-3c1fbf96ff6a",
+                    "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2F389365164.jpg?alt=media&token=99d74736-d632-4139-b15a-cd174bd9aea1",
+                    "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2F431877209.jpg?alt=media&token=2e420fde-6bf1-4f49-80e9-566b613244e8",
+                    "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2F431877113.jpg?alt=media&token=2048153e-dac8-43f1-95d4-f8365130dc0f",
+                    "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2F431877165.jpg?alt=media&token=f12e464f-0295-43a2-9f58-7dc5ab928397"
+                ],
+                "price": "500000",
+                "idHotel": "I2xifyCEJmV034lLfcpj",
+                "__collections__": {
+                    "roomType": {
+                        "i1NZorRSQSdkXUGAOyOW": {
+                            "amenities": {
+                                "wifi": true,
+                                "bathtub": true,
+                                "dishwasher": false,
+                                "pet": true
+                            },
+                            "occupancy": 2,
+                            "typeName": "2 Bedroom Apartment",
+                            "imgRoom": [
+                                "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2F6af7e644d8eb9690fe09a44eae1beab4.webp?alt=media&token=bfd34d53-bde6-4467-b165-539dc0417285",
+                                "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2F8a0105c83abc5ecc666a5a92655470e6.webp?alt=media&token=1d0c8fbb-1a3a-4de0-9bcc-967ff79961dd",
+                                "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2Fbc959e19872f2a49bca14a24b67f6e85.webp?alt=media&token=4e88a413-3bc6-4b29-a700-ef3a0a499699",
+                                "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2Fe65ec1619db06c6ca92be601f368f923.webp?alt=media&token=c449fa20-50d6-43c0-9dd3-2044f1099060",
+                                "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2Ff57d254a21eb5463ac75e4a847ae4fe5.webp?alt=media&token=992c4a79-f235-4722-b699-7032573e82a9"
+                            ],
+                            "__collections__": {}
+                        }
+                    }
+                }
+            },
+            "I3xt3dCEJmV034lLfcpj": {
+                "imgHotel": [
+                    "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2F389365164.jpg?alt=media&token=99d74736-d632-4139-b15a-cd174bd9aea1",
+                    "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2F3218212bec21ef67f076d3940f32c5ab.webp?alt=media&token=5287a550-6787-47ed-9d42-3c1fbf96ff6a",
+                    "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2F431877209.jpg?alt=media&token=2e420fde-6bf1-4f49-80e9-566b613244e8",
+                    "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2F431877113.jpg?alt=media&token=2048153e-dac8-43f1-95d4-f8365130dc0f",
+                    "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2F431877165.jpg?alt=media&token=f12e464f-0295-43a2-9f58-7dc5ab928397"
+                ],
+                "address": "Thắng Tam, TP. Vũng Tàu, Thắng Tam, Vũng Tàu, Việt Nam",
+                "access": {
+                    "check24H": false,
+                    "frontDesk": false,
+                    "carPark": true,
+                    "checkPrivate": true,
+                    "keyAccess": true
+                },
+                "checkOutTime": "11:30",
+                "checkInTime": "14:00 - 23:59",
+                "name": "Anatta Beach Hotel",
+                "rating": "8,8",
+                "description": "Hãy để chuyến đi của quý khách có một khởi đầu tuyệt vời khi ở lại khách sạn này, nơi có Wi-Fi miễn phí trong tất cả các phòng. Nằm ở vị trí trung tâm tại Thắng Tam của Vũng Tàu, chỗ nghỉ này đặt quý khách ở gần các điểm thu hút và tùy chọn ăn uống thú vị. Hãy nhớ dành một chút thời gian để thăm thú Hải đăng Vũng Tàu cũng như Bãi trước gần đó. Được xếp hạng 5 sao, chỗ nghỉ chất lượng cao này cho phép khách nghỉ sử dụng phòng tập và nhà hàng ngay trong khuôn viên.",
+                "geoCode": "",
+                "idOwner": "haha",
+                "price": "2500000",
+                "idHotel": "I3xt3dCEJmV034lLfcpj",
+                "__collections__": {
+                    "roomType": {
+                        "i1NZorRSQSdkXUGAOyOW": {
+                            "amenities": {
+                                "bathtub": true,
+                                "wifi": true,
+                                "dishwasher": false,
+                                "pet": true
+                            },
+                            "occupancy": 3,
+                            "typeName": "Ocean View Suite",
+                            "imgRoom": [
+                                "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2F8a0105c83abc5ecc666a5a92655470e6.webp?alt=media&token=1d0c8fbb-1a3a-4de0-9bcc-967ff79961dd",
+                                "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2F6af7e644d8eb9690fe09a44eae1beab4.webp?alt=media&token=bfd34d53-bde6-4467-b165-539dc0417285",
+                                "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2Fbc959e19872f2a49bca14a24b67f6e85.webp?alt=media&token=4e88a413-3bc6-4b29-a700-ef3a0a499699",
+                                "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2Fe65ec1619db06c6ca92be601f368f923.webp?alt=media&token=c449fa20-50d6-43c0-9dd3-2044f1099060",
+                                "https://firebasestorage.googleapis.com/v0/b/ladago-5cee2.appspot.com/o/LocationPlace%2Ff57d254a21eb5463ac75e4a847ae4fe5.webp?alt=media&token=992c4a79-f235-4722-b699-7032573e82a9"
+                            ],
+                            "__collections__": {}
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

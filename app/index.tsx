@@ -14,6 +14,7 @@ import { auth } from '../firebase'; // Import initialized instances
 import { onAuthStateChanged } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import QRCodeScreen from "@/screens/QRcodeScreen";
+import PaymentScreen from "@/screens/PaymentScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -53,6 +54,7 @@ const App = () => {
           <Stack.Screen name="Booking" component={BookingScreen} />
             <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
             <Stack.Screen name="QRCodeScreen" component={QRCodeScreen} />
+            <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
 
       </Stack.Navigator>
 

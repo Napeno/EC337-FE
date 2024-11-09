@@ -24,7 +24,8 @@ export default function ProductDetailScreen({navigation, route }) {
                     accountNo: '1023189148',
                     accountName: 'NGUYEN SON HA',
                     acqId: 970436,
-                    amount: Math.round(totalAmount * 1000),
+                    // amount: Math.round(totalAmount * 1000),
+                    amount: 2000,
                     addInfo: 'Thanh toán tại EC337',
                     template: 'compact2'
                 }

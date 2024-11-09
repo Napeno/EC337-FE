@@ -31,7 +31,7 @@ export default function BookingScreen({ navigation }) {  // Add navigation prop
     setScanned(true);
     console.log(data);
     const response = await getProductByBarcode(data);
-    // console.log(response);
+    console.log(response);
     setFormData((prevFormData) => {
         return Array.isArray(prevFormData) ? [...prevFormData, response] : [response];
     });
@@ -89,6 +89,11 @@ export default function BookingScreen({ navigation }) {  // Add navigation prop
                 title="Go to Product Detail"
                 onPress={() => navigation.navigate('ProductDetail', { formData })}
               />
+
+            <Button
+                title="Go to Payment"
+                onPress={() => navigation.navigate('PaymentScreen', { formData })}
+            />
             </>
           )}
       </View>

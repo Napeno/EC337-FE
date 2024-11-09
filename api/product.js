@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { REACT_APP_API_URL } from '@env';
 
 export const fetchProduct = async () => {
     const url = `${process.env.REACT_APP_API_URL}/api/products`;
@@ -29,7 +28,7 @@ export const getProductById = async (id) => {
 };
 
 export const getProductByBarcode = async (barcode) => {
-    const url = `http://192.168.80.213:8080/api/products/get-product-by-barcode/${barcode}`;
+    const url = `http://192.168.1.10:8080/api/products/get-product-by-barcode/${barcode}`;
     try {
         console.log(url)
         const response = await axios.get(url);

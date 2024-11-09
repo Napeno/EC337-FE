@@ -1,5 +1,4 @@
 import axios from 'axios';
-import CryptoJS from 'crypto-js';
 
 export const requestMoMoPayment = async () => {
     const accessKey = 'F8BBA842ECF85';
@@ -17,7 +16,6 @@ export const requestMoMoPayment = async () => {
     const lang = 'vi';
 
     const rawSignature = `accessKey=${accessKey}&amount=${amount}&extraData=${extraData}&ipnUrl=${ipnUrl}&orderId=${orderId}&orderInfo=${orderInfo}&partnerCode=${partnerCode}&redirectUrl=${redirectUrl}&requestId=${requestId}&requestType=${requestType}`;
-    const signature = CryptoJS.HmacSHA256(rawSignature, secretKey).toString(CryptoJS.enc.Hex);
 
     // Prepare the request payload
     const requestBody = {

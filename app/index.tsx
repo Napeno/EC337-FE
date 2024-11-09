@@ -13,6 +13,7 @@ import BottomTabs from '../tabs/BottomTabs';
 import { auth } from '../firebase'; // Import initialized instances
 import { onAuthStateChanged } from 'firebase/auth';
 import { useEffect, useState } from 'react';
+import QRCodeScreen from "@/screens/QRcodeScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -50,7 +51,9 @@ const App = () => {
           <Stack.Screen name="STEPTHREE" component={StepThreeScreen} />
           <Stack.Screen name="STEPFOUR" component={StepFourScreen} />
           <Stack.Screen name="Booking" component={BookingScreen} />
-        <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
+            <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
+            <Stack.Screen name="QRCodeScreen" component={QRCodeScreen} />
+
       </Stack.Navigator>
 
 

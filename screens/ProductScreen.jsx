@@ -1,23 +1,55 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import {View, Text, Image, StyleSheet, ScrollView, Button} from 'react-native';
+import {requestMoMoPayment} from '@/api/momo'
+import {getStaticQR} from "@/api/vietqr";
 
-export default function ProductDetailScreen({ route }) {
-  const { formData } = route.params;  
+export default function ProductDetailScreen({navigation, route }) {
+    const { formData = [] } = route.params;
+    console.log(formData);
+    let totalAmount = formData.reduce((accum, product) => accum + product.price, 0);
+    let qrURL = ''
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{formData.name}</Text>
-      <Image source={{ uri: formData.imageUrl }} style={styles.image} />
-      <Text>Product ID: {formData.id}</Text>
-    </View>
+      <ScrollView contentContainerStyle={styles.container}>
+          {Array.isArray(formData) && formData.map((product, index) => (
+              <View key={index} style={styles.productContainer}>
+                  <Text style={styles.title}>{product.name}</Text>
+                  <Image source={{ uri: product.imageUrl }} style={styles.image} />
+                  <Text>Product Price: {product.price}</Text>
+              </View>
+          ))}
+          <Button
+            title="Generate QR code"
+            onPress={async () => {
+                const formDataToSend = {
+                    accountNo: '1023189148',
+                    accountName: 'NGUYEN SON HA',
+                    acqId: 970436,
+                    amount: Math.round(totalAmount * 1000),
+                    addInfo: 'Thanh toán tại EC337',
+                    template: 'compact2'
+                }
+                const result = await getStaticQR(formDataToSend);
+                if (result) {
+                    // console.log(result.data?.qrDataURL);
+                    navigation.navigate('QRCodeScreen', { qrDataURL: result.data?.qrDataURL });
+                } else {
+                    // Handle error
+                    console.log('Payment request failed');
+                }
+            }}
+        />
+      </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     padding: 16,
+    alignItems: 'center',
+  },
+  productContainer: {
+    marginBottom: 24,
+    alignItems: 'center',
   },
   title: {
     fontSize: 24,

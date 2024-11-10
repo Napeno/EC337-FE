@@ -28,7 +28,7 @@ export const getProductById = async (id) => {
 };
 
 export const getProductByBarcode = async (barcode) => {
-    const url = `http://192.168.1.10:8080/api/products/get-product-by-barcode/${barcode}`;
+    const url = `${process.env.EXPO_PUBLIC_API_URL}/api/products/get-product-by-barcode/${barcode}`;
     try {
         console.log(url)
         const response = await axios.get(url);

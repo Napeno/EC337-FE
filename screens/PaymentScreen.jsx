@@ -78,14 +78,14 @@ export default function PaymentScreen({navigation, route }) {
                             amount: totalAmount,
                             cancelUrl: cancelUrl,
                             description: 'Thanh toán tại EC337',
-                            orderCode: 203,
+                            orderCode: generatedOrderId,
                             returnUrl: returnUrl
                         }, checkSumKey);
 
                         console.log("Encrypted Text:", encryptedText);
 
                         const formDataToSend = {
-                            orderCode: 203,
+                            orderCode: generatedOrderId,
                             description: 'Thanh toán tại EC337',
                             item: item,
                             cancelUrl: cancelUrl,
@@ -99,7 +99,7 @@ export default function PaymentScreen({navigation, route }) {
                         const result = await createPayment(formDataToSend);
                         if (result) {
                             console.log(result);
-                            // navigation.navigate('QRCodeScreen', { qrDataURL: result.data?.qrDataURL });
+                            navigation.navigate('QRPaymentScreen', { result: result });
                         } else {
                             console.log('Payment request failed');
                         }

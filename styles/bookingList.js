@@ -93,7 +93,7 @@ export default StyleSheet.create({
 
     night:{
         marginBottom: 8,
-        textAlign: 'right',
+        textAlign: 'right',1z
         fontFamily: 'Quicksand_600SemiBold',
         fontSize: 16,
     },

@@ -2,14 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { Client } from '@stomp/stompjs';
+import {getPaymentStatus} from "@/api/payos";
 
 export default function QRPaymentScreen({ route }) {
     const { result } = route.params; // Receive plain text QR data from props
-    const [paymentStatus, setPaymentStatus] = useState("Pending");
+    const [paymentStatus, setPaymentStatus] = useState("Chờ thanh toán");
+
+    const getStatus = async () => {
+        try {
+            const response = await getPaymentStatus(result.data?.orderCode);
+
+            if (response?.data?.status === 'PAID') {
+                setPaymentStatus('Thanh toán thành công');
+            }
+        } catch (error) {
+            console.error('Error fetching payment status:', error);
+        }
+    };
+
+    useEffect(() => {
+        getStatus();
+
+        const interval = setInterval(() => {
+            getStatus();
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     useEffect(() => {
         const client = new Client({
-            brokerURL: 'ws://192.168.1.74:8080/api/payment-status', // WebSocket endpoint
+            brokerURL: 'ws://192.168.1.17:8080/webhook/payment-success', // WebSocket endpoint
             onConnect: () => {
                 console.log('Connected to WebSocket');
                 client.subscribe('/topic/payment-status', (message) => {
@@ -21,10 +44,10 @@ export default function QRPaymentScreen({ route }) {
                 });
             },
             onStompError: (error) => {
-                console.error('STOMP error:', error);
+                // console.error('STOMP error:', error);
             },
             onWebSocketError: (error) => {
-                console.error('WebSocket connection error:', error); // Detailed WebSocket error logging
+                // console.error('WebSocket connection error:', error); // Detailed WebSocket error logging
             },
         });
 

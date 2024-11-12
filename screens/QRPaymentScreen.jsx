@@ -3,17 +3,35 @@ import { View, StyleSheet, Text } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { Client } from '@stomp/stompjs';
 import {getPaymentStatus} from "@/api/payos";
+import * as Speech from 'expo-speech';
 
 export default function QRPaymentScreen({ route }) {
     const { result } = route.params; // Receive plain text QR data from props
     const [paymentStatus, setPaymentStatus] = useState("Chờ thanh toán");
+    const [isPaidHandled, setIsPaidHandled] = useState(false);
+
+    const options = {
+        language: 'vi',
+    };
+
+    const extractNameAndBank = (input: string) => {
+        const parts = input.split(' ');
+
+        const nameAndBank = parts.slice(-5).join(' ');
+
+        return nameAndBank;
+    };
 
     const getStatus = async () => {
         try {
             const response = await getPaymentStatus(result.data?.orderCode);
 
-            if (response?.data?.status === 'PAID') {
+            if (response?.data?.status === 'PAID' && !isPaidHandled) {
+                const infoBank = extractNameAndBank(response?.data?.transactions[0]?.description);
+                const amount = response?.data?.amount;
+                Speech.speak(`Thanh toán thành công với số tiền là ${amount} đồng tới tài khoản ${infoBank}`, options);
                 setPaymentStatus('Thanh toán thành công');
+                setIsPaidHandled(true);
             }
         } catch (error) {
             console.error('Error fetching payment status:', error);

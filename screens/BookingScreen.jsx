@@ -29,7 +29,6 @@ export default function BookingScreen({ navigation }) {  // Add navigation prop
 
   const handleBarCodeScanned = async ({ type, data }) => {
     setScanned(true);
-    console.log(data);
     const response = await getProductByBarcode(data);
     console.log(response);
     setFormData((prevFormData) => {

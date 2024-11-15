@@ -11,7 +11,6 @@ module.exports = function (api) {
           prefix: "process.env."
         }
       }],
-      "react-native-reanimated/plugin", // Ensure this is the last plugin
     ],
   };
 };

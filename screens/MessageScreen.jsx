@@ -32,7 +32,7 @@ const MessageScreen = () => {
         <View style={styles.viewContainer}>
           <View style={styles.firstLayer}>
             <Text style={styles.titleMessage}>
-              Message List
+              Transaction List
             </Text>
 
             <Image style={styles.findMessage}

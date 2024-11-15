@@ -1,108 +1,94 @@
-import React from "react";
-
-const { useState, useEffect } = require('react');
-import {Text, View, StyleSheet, Button, TextInput} from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import React, { useState, useEffect, useRef } from 'react';
+import { Text, View, StyleSheet, Button, Alert,TouchableOpacity } from 'react-native';
+import { CameraView, Camera } from "expo-camera";
 import {getProductByBarcode} from '@/api/product'
 
-export default function BookingScreen({ navigation }) {  // Add navigation prop
-  const [hasPermission, setHasPermission] = useState(null);
-  const [scanned, setScanned] = useState(false);
-  const [barcode, setBarcode] = useState('');
-  const [formData, setFormData] = useState({
-    barcode: '',
-    createdAt: '',
-    imageUrl: '',
-    name: '',
-    price: '',
-    productId: '',
-    updatedAt: '',
-  });
-
-  useEffect(() => {
-    const getBarCodeScannerPermissions = async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
-    };
-    getBarCodeScannerPermissions();
-  }, []);
-
-  const handleBarCodeScanned = async ({ type, data }) => {
-    setScanned(true);
-    const response = await getProductByBarcode(data);
-    console.log(response);
-    setFormData((prevFormData) => {
-        return Array.isArray(prevFormData) ? [...prevFormData, response] : [response];
+export default function BookingScreen({ navigation }) {
+    const [formData, setFormData] = useState({
+        barcode: '',
+        createdAt: '',
+        imageUrl: '',
+        name: '',
+        price: '',
+        productId: '',
+        updatedAt: '',
     });
-  };
+    const [hasPermission, setHasPermission] = useState(null);
+    const [scanned, setScanned] = useState(false);
 
-  if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>;
-  }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
+    useEffect(() => {
+        const getCameraPermissions = async () => {
+            const { status } = await Camera.requestCameraPermissionsAsync();
+            setHasPermission(status === "granted");
+        };
 
-  return (
-      <View style={styles.container}>
-          {/*<TextInput*/}
-          {/*    value={barcode}*/}
-          {/*    onChangeText={setBarcode}*/}
-          {/*/>*/}
-          {/*<Button*/}
-          {/*    title="Tap to get product"*/}
-          {/*    onPress={async () => {*/}
-          {/*        try {*/}
-          {/*            const response = await getProductByBarcode(barcode);*/}
-          {/*            console.log(response);*/}
-          {/*            setFormData((prevFormData) => {*/}
-          {/*                return Array.isArray(prevFormData) ? [...prevFormData, response] : [response];*/}
-          {/*            });*/}
-          {/*            setBarcode('');*/}
-          {/*            console.log(response);*/}
-          {/*        } catch (error) {*/}
-          {/*            console.error("Error fetching product:", error);*/}
-          {/*        }*/}
-          {/*    }}*/}
-          {/*/>*/}
-          {/*<Button*/}
-          {/*    title="Go to Product Detail"*/}
-          {/*    onPress={() => navigation.navigate('ProductDetail', {formData})}*/}
-          {/*/>*/}
+        getCameraPermissions();
+    }, []);
 
+    const handleBarcodeScanned = async ({ type, data }) => {
+        setScanned(true);
+        const response = await getProductByBarcode(data);
+        console.log(response);
+        setFormData((prevFormData) => {
+            return Array.isArray(prevFormData) ? [...prevFormData, response] : [response];
+        });
+    };
 
-          <BarCodeScanner
-            onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-            style={StyleSheet.absoluteFillObject}
-          />
-          {scanned && (
-            <>
-                <Button
-                    title="Reset product"
-                    onPress={() => setFormData([])}
-                />
+    if (hasPermission === null) {
+        return <Text>Requesting for camera permission</Text>;
+    }
+    if (hasPermission === false) {
+        return <Text>No access to camera</Text>;
+    }
 
-              <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />
+    return (
+        <View style={styles.container}>
+            <CameraView
+                onBarcodeScanned={scanned ? undefined : handleBarcodeScanned}
+                barcodeScannerSettings={{
+                    barcodeTypes: ["code128", "ean13", "ean8", "upc_a", "upc_e"],
+                }}
 
-              <Button
-                title="Go to Product Detail"
-                onPress={() => navigation.navigate('ProductDetail', { formData })}
-              />
-
-            <Button
-                title="Go to Payment"
-                onPress={() => navigation.navigate('PaymentScreen', { formData })}
+                style={StyleSheet.absoluteFillObject}
             />
-            </>
-          )}
-      </View>
-  );
+            {scanned && (
+                <>
+                    <Button title="Reset product" onPress={() => setFormData([])} />
+                    <Button title="Tap to Scan Again" onPress={() => setScanned(false)} />
+                    <Button
+                        title="Go to Product Detail"
+                        onPress={() => navigation.navigate('ProductDetail', { formData })}
+                    />
+                    <Button
+                        title="Go to Payment"
+                        onPress={() => navigation.navigate('PaymentScreen', { formData })}
+                    />
+                </>
+            )}
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column',
         justifyContent: 'center',
     },
+    buttonContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        backgroundColor: 'transparent',
+        margin: 64,
+    },
+    button: {
+        flex: 1,
+        alignSelf: 'flex-end',
+        alignItems: 'center',
+    },
+    text: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: 'white',
+    },
 });
+

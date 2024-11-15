@@ -26,14 +26,9 @@ export default function PaymentScreen({navigation, route }) {
         setOrderId(generateOrderId());
     };
 
-
     function encryptSHA256({ amount, cancelUrl, description, orderCode, returnUrl }, checkSumKey) {
-        // Tạo chuỗi plainText
         const plainText = `amount=${amount}&cancelUrl=${cancelUrl}&description=${description}&orderCode=${orderCode}&returnUrl=${returnUrl}`;
-
-        // Tạo hàm băm SHA-256 sử dụng checkSumKey
         const hash = sha256.hmac(checkSumKey, plainText);
-
         return hash;
     }
 

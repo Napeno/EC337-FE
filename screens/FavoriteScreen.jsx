@@ -10,7 +10,6 @@ import {
   Quicksand_600SemiBold,
   Quicksand_700Bold,
 } from '@expo-google-fonts/quicksand';
-import { BarCodeScanner } from 'expo-barcode-scanner';
 
 const FavoriteScreen = () => {
 
@@ -46,9 +45,6 @@ const FavoriteScreen = () => {
             </Pressable>
           </View>
 
-          <View>
-            <BarCodeScanner value="Hello World" type="CODE128" />
-          </View>
 
           <FavoriteList />
         </View>

@@ -23,6 +23,7 @@ export default StyleSheet.create({
 
     cardHolder:{
         flexDirection: 'row',
+        marginLeft: 20,
     },
 
     cardInfo:{
@@ -49,10 +50,21 @@ export default StyleSheet.create({
     },
 
     time: {
-        fontFamily: 'Quicksand_500Medium',
-        color: '#939393',
+        fontFamily: 'Quicksand_700Bold',
+        color: 'green',
         fontSize: 16,
-        marginLeft: 10,
+        marginLeft: 30,
+        fontWeight: "900",
+    },
+
+    timeTransaction:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+
+    timeTransactionItem:{
+        color: '#939393',
+
     },
 
     seenCircle:{
@@ -60,8 +72,9 @@ export default StyleSheet.create({
         borderRadius: 100,
         width: 12,
         height:12,
+
         position: 'absolute',
-        alignSelf: 'flex-end'        
+        alignSelf: 'flex-start'
     },
 
 });

@@ -25,7 +25,8 @@ const App = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+      // @ts-ignore
+        setUser(user);
       setLoading(false);
     });
 
@@ -38,14 +39,13 @@ const App = () => {
   }
 
   return (
-    <NavigationContainer independent={true}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {user ? (
+        {/*{user ? (*/}
+        {/*  <Stack.Screen name="MAIN" component={BottomTabs} />*/}
+        {/*) : (*/}
+        {/*  <Stack.Screen name="LOGIN" component={LoginScreen} />*/}
+        {/*)}*/}
           <Stack.Screen name="MAIN" component={BottomTabs} />
-        ) : (
-          <Stack.Screen name="LOGIN" component={LoginScreen} />
-        )}
-
           <Stack.Screen name="CREATE" component={Introduction} />
           <Stack.Screen name="PROFILE" component={ProfileScreen} />
           <Stack.Screen name="STEPONE" component={StepOneScreen} />
@@ -62,7 +62,6 @@ const App = () => {
 
 
 
-    </NavigationContainer>
   );
 };
 

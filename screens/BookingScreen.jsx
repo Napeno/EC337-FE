@@ -4,15 +4,8 @@ import { CameraView, Camera } from "expo-camera";
 import {getProductByBarcode} from '@/api/product'
 
 export default function BookingScreen({ navigation }) {
-    const [formData, setFormData] = useState({
-        barcode: '',
-        createdAt: '',
-        imageUrl: '',
-        name: '',
-        price: '',
-        productId: '',
-        updatedAt: '',
-    });
+    const [formData, setFormData] = useState([]);
+    const scanningRef = useRef(false);
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
 
@@ -26,12 +19,22 @@ export default function BookingScreen({ navigation }) {
     }, []);
 
     const handleBarcodeScanned = async ({ type, data }) => {
+        if (scanningRef.current) return;
+
+        scanningRef.current = true;
         setScanned(true);
-        const response = await getProductByBarcode(data);
-        console.log(response);
-        setFormData((prevFormData) => {
-            return Array.isArray(prevFormData) ? [...prevFormData, response] : [response];
-        });
+
+        try {
+            const response = await getProductByBarcode(data);
+            console.log(response);
+            setFormData((prevFormData) => [...prevFormData, response]);
+        } catch (error) {
+            console.error("Error fetching product:", error);
+        } finally {
+            setTimeout(() => {
+                scanningRef.current = false;
+            }, 1500);
+        }
     };
 
     if (hasPermission === null) {
@@ -46,7 +49,7 @@ export default function BookingScreen({ navigation }) {
             <CameraView
                 onBarcodeScanned={scanned ? undefined : handleBarcodeScanned}
                 barcodeScannerSettings={{
-                    barcodeTypes: ["code128", "ean13", "ean8", "upc_a", "upc_e"],
+                    barcodeTypes: ["code128"],
                 }}
 
                 style={StyleSheet.absoluteFillObject}

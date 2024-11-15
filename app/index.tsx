@@ -40,11 +40,11 @@ const App = () => {
 
   return (
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {/*{user ? (*/}
-        {/*  <Stack.Screen name="MAIN" component={BottomTabs} />*/}
-        {/*) : (*/}
-        {/*  <Stack.Screen name="LOGIN" component={LoginScreen} />*/}
-        {/*)}*/}
+        {user ? (
+          <Stack.Screen name="MAIN" component={BottomTabs} />
+        ) : (
+          <Stack.Screen name="LOGIN" component={LoginScreen} />
+        )}
           <Stack.Screen name="MAIN" component={BottomTabs} />
           <Stack.Screen name="CREATE" component={Introduction} />
           <Stack.Screen name="PROFILE" component={ProfileScreen} />

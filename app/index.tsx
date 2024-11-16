@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react';
 import QRCodeScreen from "@/screens/QRcodeScreen";
 import PaymentScreen from "@/screens/PaymentScreen";
 import QRPaymentScreen from "@/screens/QRPaymentScreen";
+import BarcodeScreen from "../screens/BarCodeScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -40,11 +41,11 @@ const App = () => {
 
   return (
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {user ? (
-          <Stack.Screen name="MAIN" component={BottomTabs} />
-        ) : (
-          <Stack.Screen name="LOGIN" component={LoginScreen} />
-        )}
+        {/*{user ? (*/}
+        {/*  <Stack.Screen name="MAIN" component={BottomTabs} />*/}
+        {/*) : (*/}
+        {/*  <Stack.Screen name="LOGIN" component={LoginScreen} />*/}
+        {/*)}*/}
           <Stack.Screen name="MAIN" component={BottomTabs} />
           <Stack.Screen name="CREATE" component={Introduction} />
           <Stack.Screen name="PROFILE" component={ProfileScreen} />
@@ -57,6 +58,7 @@ const App = () => {
             <Stack.Screen name="QRCodeScreen" component={QRCodeScreen} />
             <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
           <Stack.Screen name="QRPaymentScreen" component={QRPaymentScreen} />
+          <Stack.Screen name="BarcodeScreen" component={BarcodeScreen} />
 
       </Stack.Navigator>
 

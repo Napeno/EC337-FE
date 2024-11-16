@@ -1,38 +1,88 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  safeAreaView: {
-    backgroundColor: 'white',
-    height: '100%',
-
-  },
-  scrollView: {
-  },
-  viewContainer: {
-    width: '100%',
-    marginTop: 20,
-    height: '100%',
-    paddingHorizontal: 20,
-
-  },
-
-  firstLayer:{
-    marginBottom: 24,
-    marginTop: 16,
-    flexDirection:'row',
+  container: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  
-  tilteBooking:{
-    fontSize: 34,
-    fontFamily: 'Quicksand_700Bold'
-  },
-  
-  editBooking:{
+    backgroundColor: '#f0f0f0',
+},
+cameraWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    width: '100%',
+    alignItems: 'center',
+    position: 'relative',
+},
+camera: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,
+},
+scanOverlay: {
+    position: 'absolute',
+    top: '40%',
+    left: '10%',
+    width: '80%',
+    height: '15%',
+    borderWidth: 2,
+    borderColor: '#fff',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+},
+scanText: {
+    color: '#fff',
     fontSize: 18,
-    fontFamily: 'Quicksand_500Medium',
-    textDecorationLine: 'underline'
-  },
-
+    fontWeight: 'bold',
+},
+buttonContainer: {
+    position: 'absolute',
+    bottom: 40,
+    width: '100%',
+    paddingHorizontal: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+},
+button: {
+    backgroundColor: '#007bff',
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    marginBottom: 10,
+    borderRadius: 5,
+    width: '100%',
+    alignItems: 'center',
+},
+buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+},
+avatar:{
+  position: 'absolute',
+  width: '100%',
+  height: '50%',
+  justifyContent: 'center',
+  alignItems: 'center',
+},
+overlay: {
+  position: 'absolute',
+  top: '10%',
+  left: '5%',
+  width: '90%',
+  height: '50%',
+  justifyContent: 'center',
+  alignItems: 'center',
+},
+scanBox: {
+  width: '80%',
+  height: '40%',
+  position: 'relative',
+},
+scanLine: {
+  position: 'absolute',
+  width: '100%',
+  height: 4,
+  backgroundColor: '#6AB9F7',
+},
 });

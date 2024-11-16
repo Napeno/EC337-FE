@@ -11,6 +11,7 @@ module.exports = function (api) {
           prefix: "process.env."
         }
       }],
+      "react-native-reanimated/plugin",
     ],
   };
 };

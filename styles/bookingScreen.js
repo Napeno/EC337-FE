@@ -5,7 +5,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#white',
 },
 cameraWrapper: {
     flex: 1,
@@ -31,11 +31,6 @@ scanOverlay: {
     justifyContent: 'center',
     alignItems: 'center',
 },
-scanText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-},
 buttonContainer: {
     position: 'absolute',
     bottom: 40,
@@ -52,6 +47,15 @@ button: {
     borderRadius: 5,
     width: '100%',
     alignItems: 'center',
+},
+buttonPayment:{
+  backgroundColor: '#154C91',
+  paddingVertical: 10,
+  paddingHorizontal: 30,
+  marginBottom: 10,
+  borderRadius: 5,
+  width: '100%',
+  alignItems: 'center',
 },
 buttonText: {
     color: '#fff',
@@ -85,4 +89,132 @@ scanLine: {
   height: 4,
   backgroundColor: '#6AB9F7',
 },
+
+closeButton: {
+  marginTop: 10,
+  padding: 10,
+  backgroundColor: 'red',
+},
+mainContent: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+},
+openButton: {
+  position: 'absolute',
+  width: '100%',
+  height: '50%',
+  justifyContent: 'center',
+  alignItems: 'center',
+},
+
+drawer: {
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  right: 0,
+  backgroundColor: 'white',
+  borderTopLeftRadius: 20,
+  borderTopRightRadius: 20,
+  overflow: 'visible', // Allows content to overflow beyond the drawer boundaries
+},
+drawerContent: {
+  flex: 1, // Ensures content can scroll if needed
+  position: 'relative', // To allow absolute positioning of the button
+},
+
+button_expand: {
+  position: 'absolute',
+  top: -25, // Adjust to move the button outside the drawer, above the content
+  left: '50%',
+  transform: [{ translateX: -25 }], // Adjust the translateX value to center the button
+  width: 50, // Adjust the size of the button
+  height: 50,
+  zIndex: 10, // Ensure the button stays above the drawer content
+},
+
+wrapContent:{
+  paddingHorizontal: 20,
+  paddingVertical: 25
+},
+
+wrapHeader: {
+  flexDirection: 'row',  // Aligns children horizontally
+  justifyContent: 'space-between',  // Spreads out content to both sides
+  alignItems: 'center',  // Vertically centers the items
+  marginBottom: 18
+},
+
+wrapHeaderContent:{
+  flexDirection: 'row',
+  alignContent: 'center',
+  justifyContent: 'flex-start',
+  gap: '8%',
+  marginBottom: '1%'
+},
+
+leftContent: {
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+},
+
+drawerHeader:{
+  fontSize: 24,
+  fontFamily: 'Quicksand_700Bold'
+},
+
+cart_icon:{
+  width: 28,
+  height: 28  
+},
+
+cartView:{
+  
+},
+drawerItem:{
+  fontSize: 18,
+  marginLeft: 40,
+  fontFamily: 'Quicksand_600SemiBold',
+  color: '#A9A9A9'
+},
+
+cashHeader:{
+  fontSize: 26,
+  fontFamily: 'Quicksand_700Bold',
+  color: "#154C91",
+},
+
+bottomWrap: {
+  bottom: 0,  // Ensures the container stays at the bottom
+  left: 0,
+  right: 0,
+  backgroundColor: 'white',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderTopWidth: 1,
+  borderTopColor: '#ddd',
+  width: '100%'
+},
+
+totalWrap:{
+  width: '100%',
+  paddingVertical: '8%',
+  flexDirection: 'row',
+  alignContent: 'center',
+  justifyContent: 'space-between',
+},
+
+totalText:{
+  fontSize: 18,
+  fontFamily: 'Quicksand_700Bold'
+},
+
+
+divider: {
+  borderBottomWidth: 1.5,
+  borderBottomColor: '#D2D2D2',
+  marginTop: 10,
+},
+
+
 });

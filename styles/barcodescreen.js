@@ -82,5 +82,6 @@ export default StyleSheet.create({
   },
   wrap_columns:{
     marginBottom: '10%'
-  }
+  },
+  
 });

@@ -217,7 +217,7 @@ export default function BookingScreen({ navigation }) {
                                                 style={styles.cart_icon}
                                                 resizeMode="contain"
                                             />
-                                            <Text style={styles.drawerHeader}>My Cart</Text>
+                                            <Text style={styles.drawerHeader}>Cart</Text>
                                         </View>
                                         <Text style={styles.drawerItem}>{itemCount} items</Text>
                                     </View>

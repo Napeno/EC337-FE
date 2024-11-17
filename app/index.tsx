@@ -17,6 +17,7 @@ import QRCodeScreen from "@/screens/QRcodeScreen";
 import PaymentScreen from "@/screens/PaymentScreen";
 import QRPaymentScreen from "@/screens/QRPaymentScreen";
 import BarcodeScreen from "../screens/BarCodeScreen";
+import CreateQRScreen from '../screens/CreateQRScreen'
 
 const Stack = createNativeStackNavigator();
 
@@ -59,6 +60,7 @@ const App = () => {
             <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
           <Stack.Screen name="QRPaymentScreen" component={QRPaymentScreen} />
           <Stack.Screen name="BarcodeScreen" component={BarcodeScreen} />
+          <Stack.Screen name="CreateQRScreen" component={CreateQRScreen} />
 
       </Stack.Navigator>
 

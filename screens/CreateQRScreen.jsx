@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
-import {View, TextInput, Button, Text, StyleSheet, ScrollView, Image} from 'react-native';
-import {getStaticQR} from "../api/vietqr";
+import { View, TextInput, TouchableOpacity, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import { getStaticQR } from "../api/vietqr";
+import styles from '../styles/createQR'
 
-const CreateQRScreen = () => {
+const CreateQRScreen = ({navigation}) => {
     const [accountNo, setAccountNo] = useState('');
     const [accountName, setAccountName] = useState('');
     const [acqId, setAcqId] = useState('');
     const [amount, setAmount] = useState('');
     const [addInfo, setAddInfo] = useState('');
-    const [qrCodeData, setQrCodeData] = useState<string | null>(null);
+    const [qrCodeData, setQrCodeData] = useState(null);
+    const [bin, setBin] = useState(null);
+    const [selectedLogo, setSelectedLogo] = useState(null); 
 
     const handleGenerateQrCode = async () => {
         const totalAmount = parseFloat(amount);
         const formDataToSend = {
             accountNo,
             accountName,
-            acqId: parseInt(acqId),
-            amount: Math.round(totalAmount * 10000), // Ví dụ nhân với 10000 để chuyển sang đơn vị nhỏ hơn
+            acqId: bin,
+            amount: Math.round(totalAmount),
             addInfo,
             template: 'compact2'
         };
@@ -24,9 +27,16 @@ const CreateQRScreen = () => {
         try {
             const response = await getStaticQR(formDataToSend);
             setQrCodeData(response.data?.qrDataURL);
+            navigation.navigate('QRCodeScreen', { qrDataURL: response.data?.qrDataURL });
         } catch (error) {
             console.error('Error generating QR code', error);
         }
+    };
+
+    const handleLogoClick = (value) => {
+        setBin(value);
+        setSelectedLogo(value);
+        console.log(value)
     };
 
     return (
@@ -38,79 +48,121 @@ const CreateQRScreen = () => {
                 placeholder="Số tài khoản"
                 value={accountNo}
                 onChangeText={setAccountNo}
+                placeholderTextColor="#aaa"
             />
             <TextInput
                 style={styles.input}
                 placeholder="Tên chủ tài khoản"
                 value={accountName}
                 onChangeText={setAccountName}
+                placeholderTextColor="#aaa"
             />
-            <TextInput
-                style={styles.input}
-                placeholder="Mã đơn vị thu"
-                value={acqId}
-                keyboardType="numeric"
-                onChangeText={setAcqId}
-            />
+            <View style={styles.containerQR}>
+                <View style={styles.rowQR}>
+                    <TouchableOpacity
+                        onPress={() => handleLogoClick(970416)}
+                        style={[
+                            styles.logoWrapper,
+                            selectedLogo === 970416 && styles.selectedLogo,
+                        ]}
+                    >
+                        <Image
+                            source={require('../constants/logo-ngan-hang-ACB-PNG.png')}
+                            style={styles.logoBank}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => handleLogoClick(970403)}
+                        style={[
+                            styles.logoWrapper,
+                            selectedLogo === 970403 && styles.selectedLogo,
+                        ]}
+                    >
+                        <Image
+                            source={require('../constants/logo-ngan-hang-Sacombank-01.png')}
+                            style={styles.logoBank}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => handleLogoClick(970436)}
+                        style={[
+                            styles.logoWrapper,
+                            selectedLogo === 970436 && styles.selectedLogo,
+                        ]}
+                    >
+                        <Image
+                            source={require('../constants/Vietcombank-01.png')}
+                            style={styles.logoBank}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.rowQR}>
+                    <TouchableOpacity
+                        onPress={() => handleLogoClick(970418)}
+                        style={[
+                            styles.logoWrapper,
+                            selectedLogo === 970418 && styles.selectedLogo,
+                        ]}
+                    >
+                        <Image
+                            source={require('../constants/BIDV-01.png')}
+                            style={styles.logoBank}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => handleLogoClick(970429)}
+                        style={[
+                            styles.logoWrapper,
+                            selectedLogo === 970429 && styles.selectedLogo,
+                        ]}
+                    >
+                        <Image
+                            source={require('../constants/SCB logo-01.png')}
+                            style={styles.logoBank}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => handleLogoClick(970407)}
+                        style={[
+                            styles.logoWrapper,
+                            selectedLogo === 970407 && styles.selectedLogo,
+                        ]}
+                    >
+                        <Image
+                            source={require('../constants/Techcombank-01.png')}
+                            style={styles.logoBank}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
+                </View>
+            </View>
             <TextInput
                 style={styles.input}
                 placeholder="Số tiền"
                 value={amount}
                 keyboardType="numeric"
                 onChangeText={setAmount}
+                placeholderTextColor="#aaa"
             />
             <TextInput
                 style={styles.input}
                 placeholder="Thông tin bổ sung"
                 value={addInfo}
                 onChangeText={setAddInfo}
+                placeholderTextColor="#aaa"
             />
 
-            <Button title="Tạo Mã QR" onPress={handleGenerateQrCode} />
+            <TouchableOpacity style={styles.button} onPress={handleGenerateQrCode}>
+                <Text style={styles.buttonText}>Tạo Mã QR</Text>
+            </TouchableOpacity>
 
-            {qrCodeData ? (
-                <View style={styles.container}>
-                    <Image
-                        source={{ uri: qrCodeData }}
-                        style={styles.qrImage}
-                    />
-                </View>
-            ) : null}
         </ScrollView>
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 20,
-    },
-    header: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
-    },
-    input: {
-        width: '100%',
-        height: 40,
-        borderColor: '#ccc',
-        borderWidth: 1,
-        marginBottom: 15,
-        paddingLeft: 10,
-        borderRadius: 5,
-    },
-    qrCodeContainer: {
-        marginTop: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    qrText: {
-        marginTop: 10,
-        fontSize: 16,
-        color: '#333',
-    },
-});
-
-export default CreateQRScreen;
+export default CreateQRScreen

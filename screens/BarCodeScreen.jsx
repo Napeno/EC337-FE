@@ -45,7 +45,7 @@ export default function BarcodeScreen() {
           <View style={styles.wrap_button}>
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => navigation.navigate('CreateQRCode')}
+                onPress={() => navigation.navigate('CreateQRScreen')}
             >
               <Image 
                     source={createQR}

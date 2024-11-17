@@ -67,7 +67,7 @@ const CartItem = ({ barcode, createdAt, imageUrl, name, price, productId, update
             <View style={styles.detailsContainer}>
                 <View style={styles.productInfoContainer}>
                     <Text style={styles.productName}>{name}</Text>
-                    <Text style={styles.productPrice}>{price} VND</Text>
+                    <Text style={styles.productPrice}>{Math.round(price).toLocaleString('vi-VN')} VND</Text>
                     <View style={styles.quantityContainer}>
                         <Pressable style={styles.quantityButton} onPress={handleDecrease}>
                             <Text style={styles.quantityButtonText}>-</Text>
@@ -78,7 +78,7 @@ const CartItem = ({ barcode, createdAt, imageUrl, name, price, productId, update
                         </Pressable>
                     </View>
                 </View>
-                <Text style={styles.totalPrice}>{totalPrice} VND</Text>
+                <Text style={styles.totalPrice}>{Math.round(totalPrice).toLocaleString('vi-VN')} VND</Text>
             </View>
         </View>
     )

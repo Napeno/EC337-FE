@@ -216,5 +216,20 @@ divider: {
   marginTop: 10,
 },
 
+buttonWrap: {
+  bottom: 100,
+  left: 0,
+  right: 0,
+  width: '100%',
+  flexDirection: 'row', 
+  justifyContent: 'space-between', 
+  alignItems: 'center', 
+  paddingHorizontal: 30,
+},
+
+resetIcon:{
+  width: 44,
+  height: 44,
+},
 
 });

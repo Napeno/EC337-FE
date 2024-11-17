@@ -15,6 +15,8 @@ export default function BookingScreen({ navigation }) {
     const [scanned, setScanned] = useState(false);
     const scanLineAnimation = useRef(new Animated.Value(0)).current;
     const [timeLeft, setTimeLeft] = useState(2400);
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [itemCount, setItemCount] = useState(0);
 
     useEffect(() => {
         const getCameraPermissions = async () => {
@@ -92,7 +94,13 @@ export default function BookingScreen({ navigation }) {
         try {
             const response = await getProductByBarcode(data);
             console.log(response);
-            setFormData((prevFormData) => [...prevFormData, response]);
+            setFormData((prevFormData) => {
+                const updatedFormData = [...prevFormData, response];
+                setItemCount(updatedFormData.length);
+                return updatedFormData;
+            });
+            const price = totalPrice + response.price;
+            setTotalPrice(price);
         } catch (error) {
             console.error("Error fetching product:", error);
         } finally {
@@ -102,10 +110,7 @@ export default function BookingScreen({ navigation }) {
         }
     };
 
-    // Function to calculate the total price
-    const calculateTotalPrice = () => {
-        return formData.reduce((total, item) => total + item.price, 0);
-    };
+
 
     if (hasPermission === null) {
         return <Text>Requesting for camera permission</Text>;
@@ -144,7 +149,7 @@ export default function BookingScreen({ navigation }) {
 
             {scanned && (
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button} onPress={() => setFormData([])}>
+                    {/* <TouchableOpacity style={styles.button} onPress={() => setFormData([])}>
                         <Text style={styles.buttonText}>Reset</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.button} onPress={() => setScanned(false)}>
@@ -161,7 +166,28 @@ export default function BookingScreen({ navigation }) {
                         onPress={() => navigation.navigate('PaymentScreen', { formData })}
                     >
                         <Text style={styles.buttonText}>Go to Payment</Text>
+                    </TouchableOpacity> */}
+                    <View style={styles.buttonWrap}>
+                    <TouchableOpacity style={styles.buttonReset} onPress={() => {
+                        setTotalPrice(0);
+                        setItemCount(0);
+                        setFormData([])
+                    } }>
+                    <Image
+                        source={require('../constants/delete_icon.png')}
+                        style={styles.resetIcon}
+                        resizeMode='contain'
+                    />
                     </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.buttonReset} onPress={() => setScanned(false)}>
+                    <Image
+                        source={require('../constants/reset_icon.png')}
+                        style={styles.resetIcon}
+                        resizeMode='contain'
+                    />
+                    </TouchableOpacity>
+                </View>
                 </View>
             )}
 
@@ -193,9 +219,10 @@ export default function BookingScreen({ navigation }) {
                                             />
                                             <Text style={styles.drawerHeader}>My Cart</Text>
                                         </View>
-                                        <Text style={styles.drawerItem}>3 items</Text>
+                                        <Text style={styles.drawerItem}>{itemCount} items</Text>
                                     </View>
-                                    <Text style={styles.cashHeader}>2000 VND</Text>
+
+                                    <Text style={styles.cashHeader}>{Math.round(totalPrice).toLocaleString('vi-VN')} VND</Text>
                                 </View>
 
                                 <View style={styles.divider} />
@@ -205,12 +232,12 @@ export default function BookingScreen({ navigation }) {
                                 <View style={styles.bottomWrap}>
                                     <View style={styles.totalWrap}>
                                         <Text style={styles.totalText}>Total</Text>
-                                        <Text style={styles.drawerHeader}>2000 VND</Text>
+                                        <Text style={styles.drawerHeader}>{Math.round(totalPrice).toLocaleString('vi-VN')} VND</Text>
                                     </View>
                                     <TouchableOpacity style={styles.buttonPayment}
-                                    onPress={() => navigation.navigate('PaymentScreen', { formData })}>
-                                        <Text style={styles.buttonText}>Go to Payment</Text>
-                                    </TouchableOpacity>
+                                        onPress={() => navigation.navigate('PaymentScreen', { formData })}>
+                                            <Text style={styles.buttonText}>Go to Checkout List</Text>
+                                        </TouchableOpacity>
                                 </View>
                             </View>
                         </View>

@@ -62,10 +62,10 @@ export default function QRPaymentScreen({ route }) {
                 });
             },
             onStompError: (error) => {
-                console.error('STOMP error:', error);
+                // console.error('STOMP error:', error);
             },
             onWebSocketError: (error) => {
-                console.error('WebSocket connection error:', error); // Detailed WebSocket error logging
+                // console.error('WebSocket connection error:', error); // Detailed WebSocket error logging
             },
         });
 

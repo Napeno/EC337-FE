@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { Client } from '@stomp/stompjs';
 import {getPaymentStatus} from "@/api/payos";
 import * as Speech from 'expo-speech';
+import styles from '../styles/qrpayment'
+import LinearGradient from 'react-native-linear-gradient';
 
-export default function QRPaymentScreen({ route }) {
+export default function QRPaymentScreen({ route, navigation }) {
     const { result } = route.params; // Receive plain text QR data from props
-    const [paymentStatus, setPaymentStatus] = useState("Chờ thanh toán");
+    const [paymentStatus, setPaymentStatus] = useState(false);
     const [isPaidHandled, setIsPaidHandled] = useState(false);
 
     const options = {
@@ -30,7 +32,7 @@ export default function QRPaymentScreen({ route }) {
                 const infoBank = extractNameAndBank(response?.data?.transactions[0]?.description);
                 const amount = response?.data?.amount;
                 Speech.speak(`Thanh toán thành công với số tiền là ${amount} đồng tới tài khoản ${infoBank}`, options);
-                setPaymentStatus('Thanh toán thành công');
+                setPaymentStatus(true);
                 setIsPaidHandled(true);
             }
         } catch (error) {
@@ -81,44 +83,53 @@ export default function QRPaymentScreen({ route }) {
 
     return (
         <View style={styles.container}>
+            <Text style={styles.title}>Thông Tin Thanh Toán</Text>
+
             {result?.data?.qrCode ? (
-                <View style={styles.qrContainer}>
-                    <QRCode
-                        value={result.data.qrCode} // Plain text for the QR code
-                        size={300}
-                    />
-                    <View style={styles.textContainer}>
-                        <Text style={styles.text}>{result.data?.accountName}</Text>
-                        <Text style={styles.text}>{result.data?.accountNumber}</Text>
-                        <Text style={styles.text}>{result.data?.amount}</Text>
+                <View style={styles.card}>
+                    <View style={styles.qrWrapper}>
+                        <View style={styles.qrBorder}>
+                            <QRCode
+                                value={result.data.qrCode} // Plain text for the QR code
+                                size={300}
+                            />
+                        </View>
                     </View>
 
-                    <Text>Payment Status: {paymentStatus}</Text>
+                    <View style={styles.infoContainer}>
+                        <View style={styles.row}>
+                            <Text style={styles.label}>Tên tài khoản:</Text>
+                            <Text style={styles.value}>{result.data?.accountName}</Text>
+                        </View>
+                        <View style={styles.row}>
+                            <Text style={styles.label}>Số tài khoản:</Text>
+                            <Text style={styles.value}>{result.data?.accountNumber}</Text>
+                        </View>
+                        <View style={[styles.row, {marginBottom: 0}]}>
+                            <Text style={styles.label}>Số tiền:</Text>
+                            <Text style={styles.value}>{Math.round(result.data?.amount).toLocaleString('vi-VN')} VND</Text>
+                        </View>
+                    </View>
                 </View>
             ) : (
-                <Text>Không có mã QR để hiển thị</Text>
+                <Text style={styles.noQRText}>Không có mã QR để hiển thị</Text>
             )}
+                <Text style={[paymentStatus? styles.statusPaid : styles.status]}>
+                    {paymentStatus ? "Đã thanh toán" : "Chờ thanh toán"}
+                </Text>
+            
+            {
+                paymentStatus? (
+                    <View>
+                        <TouchableOpacity style={styles.buttonPayment}
+                            onPress={() => navigation.navigate('MAIN')}>
+                                <Text style={styles.buttonText}>Go back Home</Text>
+                        </TouchableOpacity>
+                    </View>
+                ) : (
+                    <View></View>
+                )
+            }
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-    },
-    qrContainer: {
-        alignItems: 'center',
-    },
-    textContainer: {
-        alignItems: 'center',
-        marginTop: 16,
-    },
-    text: {
-        textAlign: 'center',
-        fontSize: 16,
-        marginVertical: 4,
-    },
-});

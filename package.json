@@ -65,6 +65,7 @@
     "react-native-dotenv": "^3.4.11",
     "react-native-element-dropdown": "^2.12.1",
     "react-native-gesture-handler": "^2.21.0",
+    "react-native-linear-gradient": "^2.8.3",
     "react-native-qrcode-svg": "^6.3.12",
     "react-native-randombytes": "^3.6.1",
     "react-native-reanimated": "^3.16.1",

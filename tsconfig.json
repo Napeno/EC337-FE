@@ -14,6 +14,6 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "pages/screens/LoginScreen.jsx"  ]
+, "pages/screens/LoginScreen.jsx", "screens/QRPaymentScreen.jsx"  ]
 }
 
